@@ -1,0 +1,13 @@
+import { Header } from "@components";
+import "@styles/globals.scss";
+
+function App() {
+  return (
+    <>
+      <Header />
+      <h1>Vite + React</h1>
+    </>
+  );
+}
+
+export default App;
