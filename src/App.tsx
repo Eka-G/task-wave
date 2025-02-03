@@ -1,11 +1,15 @@
-import { Header } from "@components";
+import { Header, Footer } from "@components";
+import { HomePage } from "@pages";
 import "@styles/globals.scss";
 
 function App() {
   return (
     <>
       <Header />
-      <h1>Vite + React</h1>
+      <main>
+        <HomePage />
+      </main>
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,22 @@
+@use "@styles/variables" as *;
+
+.footer {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__link {
+    margin-left: 5px;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      display: block;
+      content: "Eka-G";
+      right: -55px;
+      bottom: 3px;
+      width: max-content;
+    }
+  }
+}

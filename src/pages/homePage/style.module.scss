@@ -1,0 +1,9 @@
+@use "@styles/variables" as *;
+
+.home {
+  text-align: center;
+
+  &__text {
+    max-width: 800px;
+  }
+}
