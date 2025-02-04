@@ -12,6 +12,7 @@ body {
   background: $main-bg-color;
   font-family: "Comfortaa", serif;
   font-size: 16px;
+  line-height: 1.5;
   box-sizing: border-box;
   color: $font-color;
 }
@@ -41,7 +42,7 @@ main {
 }
 
 a {
-  text-decoration: inherit;
+  text-decoration: none;
 }
 
 a:hover {
@@ -51,15 +52,25 @@ a:hover {
 h1 {
   margin-bottom: 20px;
   font-size: 2rem;
-  line-height: 1.1;
 }
 
 button {
+  padding: 10px 15px;
+  border: 2px solid $primary-color;
   border-radius: 8px;
-  padding: 20px 40px;
-  background-color: $primary-color;
-  color: $second-font-color;
+  background-color: transparent;
+  color: $primary-color;
   cursor: pointer;
+  transition: color 0.3s linear, background-color 0.3s linear;
+
+  &:hover {
+    color: $second-font-color;
+    background-color: $primary-color;
+  }
+}
+
+li {
+  list-style-type: none;
 }
 
 @media (max-width: 576px) {

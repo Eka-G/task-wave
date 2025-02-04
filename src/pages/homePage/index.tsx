@@ -1,3 +1,4 @@
+import { ProjectOrganizer } from "@components";
 import styles from "./style.module.scss";
 
 export default function HomePage() {
@@ -10,9 +11,9 @@ export default function HomePage() {
         Создавайте списки задач, добавляйте описания, отслеживайте выполнение.
         TaskWave помогает вам оставаться продуктивными и организованными, не
         упуская ничего важного.
-        <br /> Присоединяйтесь к нам и преобразуйте свой подход к выполнению
-        задач!
       </p>
+
+      <ProjectOrganizer />
     </section>
   );
 }

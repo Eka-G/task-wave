@@ -1,0 +1,25 @@
+$buttonSize: 50px;
+
+.addNewButton {
+  position: relative;
+  padding: 0;
+  width: $buttonSize;
+  height: $buttonSize;
+  border-radius: 50%;
+  box-sizing: content-box;
+
+  &__img {
+    position: absolute;
+    content: "";
+    width: $buttonSize;
+    height: $buttonSize;
+    top: 0;
+    left: 0;
+    background: center / 50% no-repeat url(@assets/plus-icon.svg);
+    transition: filter 0.3s;
+
+    &:hover {
+      filter: invert(99%) sepia(56%) saturate(2%) hue-rotate(19deg) brightness(155%) contrast(100%);
+    }
+  }
+}

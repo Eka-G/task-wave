@@ -1,0 +1,78 @@
+@use "@styles/variables" as *;
+
+.projectOrganizer {
+  margin-top: 40px;
+  line-height: 1.1;
+
+  &__text {
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  &__projectList {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px 10px;
+  }
+
+  &__project {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    align-content: center;
+    width: 220px;
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 8px 4px 8px 0px $second-bg-color;
+    background-color: $main-bg-color;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-8px);
+    }
+  }
+
+  &__projectTitle {
+    display: -webkit-box;
+    font-size: 1rem;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__addButton {
+    align-content: center;
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectOrganizer {
+    &__projectList {
+      grid-template-columns: 1fr;
+      gap: 10px 0;
+    }
+
+    &__project {
+      width: auto;
+      column-gap: 24px;
+
+      &:hover {
+        transform: translate(8px, 0);
+      }
+    }
+
+    &__projectTitle {
+      text-align: left;
+      margin-top: 12px;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+  }
+}
