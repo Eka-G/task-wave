@@ -1,6 +1,7 @@
 $primary-color: #6745ff;
 $main-bg-color: #ffffff;
 $second-bg-color: rgb(205, 194, 255);
+$overlay-bg-color: rgba(0, 0, 0, 0.4);
 $font-color: #424f81;
 $second-font-color: #ffffff;
 $success-color: #47bb60;
@@ -10,6 +11,7 @@ $error-color: #e73333;
   primaryColor: $primary-color;
   secondBgColor: $second-bg-color;
   mainBgColor: $main-bg-color;
+  overlayBgColor: $overlay-bg-color;
   fontColor: $font-color;
   successColor: $success-color;
   errorColor: $error-color;

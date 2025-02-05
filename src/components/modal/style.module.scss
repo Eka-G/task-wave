@@ -1,0 +1,40 @@
+@use "@styles/variables" as *;
+
+.overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: $overlay-bg-color;
+  z-index: 100;
+}
+
+.modal {
+  position: relative;
+  padding: 30px 30px;
+  min-width: 300px;
+  min-height: 250px;
+  border-radius: 8px;
+  background-color: $main-bg-color;
+
+  &__closeButton {
+    position: absolute;
+    padding: 0;
+    display: block;
+    content: "";
+    top: 8px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    border: none;
+    background: center/contain no-repeat url("@assets/close-icon.svg");
+
+    &:hover {
+      background-color: unset;
+    } 
+  }
+}
