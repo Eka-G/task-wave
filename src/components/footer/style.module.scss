@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 0.8rem;
 
   &__link {
     margin-left: 5px;
@@ -14,9 +15,20 @@
       position: absolute;
       display: block;
       content: "Eka-G";
-      right: -55px;
-      bottom: 3px;
+      right: -45px;
+      bottom: 4px;
       width: max-content;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .footer {
+    flex-direction: column;
+    align-items: start;
+
+    &__link {
+      margin: 0 0 10px 0;
     }
   }
 }
