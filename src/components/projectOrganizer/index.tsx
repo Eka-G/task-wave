@@ -1,16 +1,14 @@
 import classnames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "@app/hooks";
+import { useAppSelector, useModal } from "@app/hooks";
 import listImg from "@assets/list.svg";
-import { AddNewButton } from "@components";
-import { projectAdded } from "@features/projects/projects-slice";
-import { Project } from "@shared/types";
+import { AddNewButton, AddProjectForm, Modal } from "@components";
 
 import styles from "./style.module.scss";
 
 export default function ProjectOrganizer() {
-  const dispatch = useAppDispatch();
   const { projects } = useAppSelector((state) => state.projects);
+  const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
 
   const projectsList =
     !!projects.length &&
@@ -24,25 +22,6 @@ export default function ProjectOrganizer() {
         </li>
       );
     });
-
-  const mockPr: Project = {
-    id: 2,
-    name: "Тестовый проект 2",
-    taskList: [
-      {
-        id: 2,
-        sequenceNumber: 2,
-        name: "Тестовая задача 2",
-        creationDate: new Date(),
-        deadlineDate: new Date(),
-        status: "created",
-      },
-    ],
-  };
-
-  const clickHandler = () => {
-    dispatch(projectAdded(mockPr));
-  };
 
   return (
     <div className={styles.projectOrganizer}>
@@ -60,9 +39,20 @@ export default function ProjectOrganizer() {
         {projectsList}
 
         <li className={styles.projectOrganizer__addButton}>
-          <AddNewButton tipText="Добавить проект" handleClick={clickHandler} />
+          <AddNewButton
+            tipText="Добавить проект"
+            handleClick={handleModalOpen}
+          />
         </li>
       </ul>
+
+      <Modal
+        isOpen={isModalOpen}
+        title="Добавить проект"
+        onClose={handleModalClose}
+      >
+        <AddProjectForm onSubmit={handleModalClose} />
+      </Modal>
     </div>
   );
 }

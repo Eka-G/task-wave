@@ -1,7 +1,7 @@
 import gitLogo from "@assets/git-hub.svg";
 import styles from "./style.module.scss";
 
-export default function Header() {
+export default function Footer() {
   return (
     <footer className={styles.footer}>
       <span>pet-project was made by</span>

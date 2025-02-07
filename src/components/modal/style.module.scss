@@ -16,8 +16,8 @@
 .modal {
   position: relative;
   padding: 30px 30px;
-  min-width: 300px;
-  min-height: 250px;
+  align-items: start;
+  width: 320px;
   border-radius: 8px;
   background-color: $main-bg-color;
 
@@ -35,6 +35,14 @@
 
     &:hover {
       background-color: unset;
-    } 
+    }
+  }
+
+  &__fieldGroup {
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    margin-bottom: 32px;
   }
 }

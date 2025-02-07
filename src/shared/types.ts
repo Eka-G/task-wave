@@ -10,7 +10,7 @@ export type Task = {
 };
 
 export type Project = {
-  id: number;
+  id: string;
   name: string;
-  taskList: Task[];
+  taskList?: Task[];
 };

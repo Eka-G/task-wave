@@ -19,7 +19,8 @@ $buttonSize: 50px;
     transition: filter 0.3s;
 
     &:hover {
-      filter: invert(99%) sepia(56%) saturate(2%) hue-rotate(19deg) brightness(155%) contrast(100%);
+      filter: invert(99%) sepia(56%) saturate(2%) hue-rotate(19deg)
+        brightness(155%) contrast(100%);
     }
   }
 }

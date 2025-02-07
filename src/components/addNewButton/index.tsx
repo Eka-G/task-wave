@@ -5,7 +5,10 @@ type addNewButtonProps = {
   handleClick: () => void;
 };
 
-export default function addNewButton({ tipText, handleClick }: addNewButtonProps) {
+export default function AddNewButton({
+  tipText,
+  handleClick,
+}: addNewButtonProps) {
   return (
     <button
       className={styles.addNewButton}

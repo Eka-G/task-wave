@@ -19,8 +19,6 @@ export default function Modal({
   }
 
   const handleClick = (event: React.MouseEvent) => {
-    event.preventDefault();
-
     if (event.target === event.currentTarget) {
       onClose();
     }
@@ -31,10 +29,10 @@ export default function Modal({
       <div className={styles.modal}>
         <button className={styles.modal__closeButton} onClick={onClose} />
 
-        <section className={styles.modal__body}>
-          <h2>{title}</h2>
+        <div className={styles.modal__body}>
+          <h2 className={styles.modal__title}>{title}</h2>
           <div className={styles.modal__content}>{children}</div>
-        </section>
+        </div>
       </div>
     </div>
   );

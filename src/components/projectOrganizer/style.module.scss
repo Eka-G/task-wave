@@ -20,7 +20,8 @@
     padding: 16px;
     display: grid;
     grid-template-columns: auto auto;
-    column-gap: 10px;
+    column-gap: 16px;
+    justify-content: flex-start;
     align-content: center;
     width: 220px;
     height: 100px;
@@ -54,6 +55,8 @@
 
 @media (max-width: 768px) {
   .projectOrganizer {
+    width: 100%;
+
     &__projectList {
       grid-template-columns: 1fr;
       gap: 10px 0;
