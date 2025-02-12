@@ -1,0 +1,10 @@
+.project {
+  height: 100%;
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { HomePage, ErrorPage } from "@pages";
+import { HomePage, ProjectPage, ErrorPage } from "@pages";
 import "@styles/globals.scss";
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<HomePage />} />
+        <Route path="project/:id" element={<ProjectPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

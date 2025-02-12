@@ -1,0 +1,36 @@
+@use "@styles/variables" as *;
+
+.tracker {
+  display: grid;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 16px;
+  border-radius: 8px;
+  background-color: $element-bg-color;
+
+  &__list {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .tracker {
+    &__title {
+      font-size: 1rem;
+    }
+
+    &__icon {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .tracker {
+    &__title {
+      font-size: 0.5rem;
+    }
+  }
+}
