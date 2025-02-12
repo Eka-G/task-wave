@@ -22,7 +22,13 @@
     position: absolute;
     bottom: 8px;
     left: 0;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: $error-color;
+  }
+}
+
+@media (max-width: 576px) {
+  .fieldGroup {
+    font-size: 1rem;
   }
 }
