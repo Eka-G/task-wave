@@ -1,16 +1,19 @@
-type TaskStatus = "created" | "inProgress" | "closed";
+export type TaskStatus = "created" | "inProgress" | "closed";
 
-export type Task = {
-  id: number;
-  sequenceNumber: number;
+export type BaseInfo = {
+  id: string;
   name: string;
+};
+
+export type Task = BaseInfo & {
   creationDate: Date;
-  deadlineDate: Date;
   status: TaskStatus;
 };
 
-export type Project = {
-  id: string;
-  name: string;
+export type Project = BaseInfo & {
   taskList?: Task[];
+};
+
+export type AddNewFormValue = {
+  name: string;
 };

@@ -5,6 +5,7 @@ type FieldGroupPtops = {
   label: string;
   name: string;
   placeholder: string;
+  maxFieldLength?: number;
   errorsText?: string;
   isTouched?: boolean;
 };
@@ -13,6 +14,7 @@ export default function FieldGroup({
   label,
   name,
   placeholder,
+  maxFieldLength,
   errorsText,
   isTouched,
 }: FieldGroupPtops) {
@@ -27,7 +29,7 @@ export default function FieldGroup({
         type="text"
         name={name}
         minLength={3}
-        maxLength={50}
+        maxLength={maxFieldLength || 50}
         placeholder={placeholder}
         required
       />
