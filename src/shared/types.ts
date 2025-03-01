@@ -1,4 +1,4 @@
-export type TaskStatus = "created" | "inProgress" | "closed";
+export type TaskStatus = "inLine" | "inProgress" | "done";
 
 export type BaseInfo = {
   id: string;

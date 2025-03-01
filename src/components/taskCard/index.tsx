@@ -1,15 +1,27 @@
-import Draggable from "react-draggable";
+import { useDraggable } from "@dnd-kit/core";
+
+import { BaseInfo } from "@shared/types";
+
 import style from "./style.module.scss";
-import { BaseInfo } from "@/shared/types";
 
 export default function TaskCard({ id, name }: BaseInfo) {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
+
+  const dragStyle = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+      }
+    : undefined;
+
   return (
-    <Draggable>
-      <li className={style.task}>
-        <p key={id} className={style.task__text}>
-          {name}
-        </p>
-      </li>
-    </Draggable>
+    <li
+      ref={setNodeRef}
+      className={style.task}
+      style={dragStyle}
+      {...attributes}
+      {...listeners}
+    >
+      <p className={style.task__text}>{name}</p>
+    </li>
   );
 }

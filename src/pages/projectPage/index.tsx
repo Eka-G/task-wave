@@ -68,7 +68,7 @@ export default function ProjectPage() {
 
         <div className={styles.project__content}>
           <Suspense fallback={<Loading />}>
-            <TaskTracker taskList={taskList} />
+            <TaskTracker taskList={taskList} projectId={currentProject.id} />
           </Suspense>
         </div>
       </section>

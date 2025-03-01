@@ -1,0 +1,7 @@
+@use "@styles/variables.scss" as *;
+
+.dropArea {
+  border-radius: 4px;
+  background-color: $active-bg-color;
+  transition: background-color 0.4s linear;
+}
