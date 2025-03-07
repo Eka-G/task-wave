@@ -46,6 +46,11 @@ export default function ProjectOrganizer() {
       projectAdded({
         id: crypto.randomUUID(),
         name,
+        taskList: {
+          inLine: [],
+          inProgress: [],
+          done: [],
+        },
       })
     );
 

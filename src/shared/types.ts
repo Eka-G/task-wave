@@ -1,4 +1,5 @@
 export type TaskStatus = "inLine" | "inProgress" | "done";
+export type TaskList = { [key in TaskStatus]: Task[] | [] };
 
 export type BaseInfo = {
   id: string;
@@ -11,7 +12,7 @@ export type Task = BaseInfo & {
 };
 
 export type Project = BaseInfo & {
-  taskList?: Task[];
+  taskList: TaskList;
 };
 
 export type AddNewFormValue = {

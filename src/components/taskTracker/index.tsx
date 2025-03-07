@@ -3,20 +3,18 @@ import { DndContext, DragEndEvent, pointerWithin } from "@dnd-kit/core";
 import { useAppDispatch } from "@app/hooks";
 import { DroppableArea, TaskCard } from "@components";
 import { taskStatusChanged } from "@features/projects/projects-slice";
-import { Task, TaskStatus } from "@shared/types";
-import sortByStatus from "@shared/sortByStatus";
+import { DND_ID_DEVIDER } from "@shared/conatants";
+import { Task, TaskList, TaskStatus } from "@shared/types";
 
 import style from "./style.module.scss";
 
 type TaskTrackerProps = {
   projectId: string;
-  taskList?: Task[];
+  taskList: TaskList;
 };
 
 export default function TaskTracker({ taskList, projectId }: TaskTrackerProps) {
   const dispatch = useAppDispatch();
-
-  const sortedTaskList = sortByStatus(taskList);
 
   const renderList = (
     status: TaskStatus,
@@ -31,7 +29,11 @@ export default function TaskTracker({ taskList, projectId }: TaskTrackerProps) {
         </h2>
         <ul className={style.tracker__list}>
           {tasks.map((task) => (
-            <TaskCard key={task.id} id={task.id} name={task.name} />
+            <TaskCard
+              key={task.id}
+              id={`${task.status}${DND_ID_DEVIDER}${task.id}`}
+              name={task.name}
+            />
           ))}
         </ul>
       </DroppableArea>
@@ -39,7 +41,7 @@ export default function TaskTracker({ taskList, projectId }: TaskTrackerProps) {
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const eventTaskId = String(event.active.id);
+    const eventDNDId = String(event.active.id);
 
     if (
       event.over &&
@@ -47,16 +49,15 @@ export default function TaskTracker({ taskList, projectId }: TaskTrackerProps) {
         event.over.id === "inProgress" ||
         event.over.id === "done")
     ) {
-      const prevStatus = sortedTaskList[event.over.id].find(
-        (task) => task.id === eventTaskId
-      )?.status;
+      const [prevStatus, taskId] = eventDNDId.split(DND_ID_DEVIDER);
 
-      if (prevStatus !== event.over.id) {
+      if (prevStatus && prevStatus !== event.over.id) {
         dispatch(
           taskStatusChanged({
             projectId,
-            taskId: eventTaskId,
-            status: String(event.over.id) as TaskStatus,
+            taskId: taskId,
+            prevStatus: prevStatus as TaskStatus,
+            newStatus: event.over.id as TaskStatus,
           })
         );
       }
@@ -68,9 +69,9 @@ export default function TaskTracker({ taskList, projectId }: TaskTrackerProps) {
   return (
     <DndContext onDragEnd={handleDragEnd} collisionDetection={pointerWithin}>
       <div className={style.tracker}>
-        {renderList("inLine", "🌊", "Очередь", sortedTaskList.inLine)}
-        {renderList("inProgress", "🛠", "В работе", sortedTaskList.inProgress)}
-        {renderList("done", "🎉", "Сделано", sortedTaskList.done)}
+        {renderList("inLine", "🌊", "Очередь", taskList.inLine)}
+        {renderList("inProgress", "🛠", "В работе", taskList.inProgress)}
+        {renderList("done", "🎉", "Сделано", taskList.done)}
       </div>
     </DndContext>
   );

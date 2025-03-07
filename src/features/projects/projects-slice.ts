@@ -12,7 +12,8 @@ type TaskAddPayload = BaseInfo & {
 type TaskStatusChangedPayload = {
   projectId: string;
   taskId: string;
-  status: TaskStatus;
+  prevStatus: TaskStatus;
+  newStatus: TaskStatus;
 };
 
 const initialState: ProjectsState = {
@@ -31,20 +32,21 @@ const projectSlice = createSlice({
 
     taskAdded(state, action: PayloadAction<TaskAddPayload>) {
       const { projectId, id, name } = action.payload;
+      const newTask = {
+        id,
+        name,
+        creationDate: new Date(),
+        status: CREATED_STATUS,
+      };
 
       state.projects = state.projects.map((project) => {
         if (project.id === projectId) {
           return {
             ...project,
-            taskList: [
-              ...(project.taskList || []),
-              {
-                id,
-                name,
-                creationDate: new Date(),
-                status: CREATED_STATUS,
-              },
-            ],
+            taskList: {
+              ...project.taskList,
+              inLine: [...project.taskList.inLine, newTask],
+            },
           };
         }
 
@@ -53,20 +55,31 @@ const projectSlice = createSlice({
     },
 
     taskStatusChanged(state, action: PayloadAction<TaskStatusChangedPayload>) {
-      const { projectId, taskId, status } = action.payload;
-      state.projects = state.projects.map((project) => {
-        if (project.taskList && project.id === projectId) {
-          const newProjectList = project.taskList.map((task) => {
-            if (task.id === taskId && task.status !== status) {
-              return { ...task, status };
-            }
+      const { projectId, taskId, prevStatus, newStatus } = action.payload;
 
-            return task;
-          });
+      state.projects = state.projects.map((project) => {
+        if (project.taskList[newStatus] && project.id === projectId) {
+          const prevTaskList = [...project.taskList[prevStatus]];
+          const newProjectList = [...project.taskList[newStatus]];
+          const changedTaskIndex = prevTaskList.findIndex(
+            (task) => task.id === taskId
+          );
+
+          if (changedTaskIndex >= 0) {
+            const [taskToMove] = prevTaskList.splice(changedTaskIndex, 1);
+            newProjectList.push({
+              ...taskToMove,
+              status: newStatus,
+            });
+          }
 
           return {
             ...project,
-            taskList: newProjectList,
+            taskList: {
+              ...project.taskList,
+              [prevStatus]: prevTaskList,
+              [newStatus]: newProjectList,
+            },
           };
         }
 
