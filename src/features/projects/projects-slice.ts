@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { STORAGE_KEY_NAME } from "@/shared/conatants";
 import { BaseInfo, Project, TaskStatus } from "@shared/types";
 
-type ProjectsState = {
-  projects: Project[] | [];
+export type ProjectsState = {
+  projects: Project[];
 };
 
 type TaskAddPayload = BaseInfo & {
@@ -17,7 +18,9 @@ type TaskStatusChangedPayload = {
 };
 
 const initialState: ProjectsState = {
-  projects: [],
+  projects: localStorage.getItem(STORAGE_KEY_NAME)
+    ? JSON.parse(localStorage.getItem(STORAGE_KEY_NAME) || "[]")
+    : [],
 };
 
 const CREATED_STATUS: TaskStatus = "inLine";
